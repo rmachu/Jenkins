@@ -53,7 +53,8 @@ pipeline{
                 AWS CodeDeploy or Kubernetes.'''
             }
         }
-        post{
+    }
+     post{
             success{
                 mail to: "s223083661@deakin.edu.au",
                 subject: "Status Update",
@@ -67,5 +68,4 @@ pipeline{
                 attachlog: true
             }
         }
-    }
 }
