@@ -11,7 +11,7 @@ pipeline{
         }
         stage('Unit and Integration Tests'){
             steps{
-                deecho '''Running tests on units and integration to ensure code works and different components behave 
+                echo '''Running tests on units and integration to ensure code works and different components behave 
                 as expected when integrated together. Tools for this can be JUnit for unit tests,
                 and Selenium for integration testing by incorporating the necessary plugins. TestNG can also be used 
                 for both unti and integration testing.'''
