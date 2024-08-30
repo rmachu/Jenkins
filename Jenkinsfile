@@ -51,7 +51,7 @@ pipeline{
             steps{
                 echo '''Deploy the application to the final production server. Possible tools we can use for this is 
                 AWS CodeDeploy or Kubernetes.'''
-                echo "Completed"
+                echo "DONE"
             }
         }
     }
