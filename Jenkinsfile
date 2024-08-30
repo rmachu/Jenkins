@@ -23,8 +23,26 @@ pipeline{
                 echo '''Analyse code to check if it meets industry standards. We can use PMD to do this by 
                 utilising the PMD plugin.'''
             }
-
+            post{
+                success{
+                    emailext(
+                        to: "s223083661@deakin.edu.au",
+                        subject: "Status Update",
+                        body: "Build was successful",
+                        attachLog: true
+                    )
+                }
+                failure{
+                    emailext(
+                        to: "s223083661@deakin.edu.au",
+                        subject: "Status Update",
+                        body: "Build was unsuccessful",
+                        attachLog: true
+                    )
+                }
+            }
         }
+        
         stage('Security Scan'){
             steps{
                 echo '''A security check on the code to identify potential risks and vulnerabilities. 
@@ -55,22 +73,4 @@ pipeline{
             }
         }
     }
-     post{
-            success{
-                emailext(
-                    to: "s223083661@deakin.edu.au",
-                    subject: "Status Update",
-                    body: "Build was successful",
-                    attachLog: true
-                )
-            }
-            failure{
-                emailext(
-                    to: "s223083661@deakin.edu.au",
-                    subject: "Status Update",
-                    body: "Build was unsuccessful",
-                    attachLog: true
-                )
-            }
-        }
 }
