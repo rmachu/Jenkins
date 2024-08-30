@@ -11,10 +11,28 @@ pipeline{
         }
         stage('Unit and Integration Tests'){
             steps{
-                echo '''Running tests on units and integration to ensure code works and different components behave 
+                deecho '''Running tests on units and integration to ensure code works and different components behave 
                 as expected when integrated together. Tools for this can be JUnit for unit tests,
                 and Selenium for integration testing by incorporating the necessary plugins. TestNG can also be used 
                 for both unti and integration testing.'''
+            }
+            post{
+                success{
+                    emailext(
+                        to: "s223083661@deakin.edu.au",
+                        subject: "Test Status Update",
+                        body: "Stage was successful",
+                        attachLog: true
+                    )
+                }
+                failure{
+                    emailext(
+                        to: "s223083661@deakin.edu.au",
+                        subject: "Test Status Update",
+                        body: "Stage was unsuccessful",
+                        attachLog: true
+                    )
+                }
             }
 
         }
@@ -23,30 +41,30 @@ pipeline{
                 echo '''Analyse code to check if it meets industry standards. We can use PMD to do this by 
                 utilising the PMD plugin.'''
             }
-            post{
-                success{
-                    emailext(
-                        to: "s223083661@deakin.edu.au",
-                        subject: "Status Update",
-                        body: "Build was successful",
-                        attachLog: true
-                    )
-                }
-                failure{
-                    emailext(
-                        to: "s223083661@deakin.edu.au",
-                        subject: "Status Update",
-                        body: "Build was unsuccessful",
-                        attachLog: true
-                    )
-                }
-            }
         }
         
         stage('Security Scan'){
             steps{
                 echo '''A security check on the code to identify potential risks and vulnerabilities. 
                 Tools used for this can be OWASP Dependency-Check by using the plugin.'''
+            }
+            post{
+                success{
+                    emailext(
+                        to: "s223083661@deakin.edu.au",
+                        subject: "Security Scan Status Update",
+                        body: "Stage was successful",
+                        attachLog: true
+                    )
+                }
+                failure{
+                    emailext(
+                        to: "s223083661@deakin.edu.au",
+                        subject: "Security Scan Status Update",
+                        body: "Stage was unsuccessful",
+                        attachLog: true
+                    )
+                }
             }
 
         }
