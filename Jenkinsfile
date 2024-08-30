@@ -55,15 +55,15 @@ pipeline{
         }
         post{
             success{
-                mail to: "s223083661@deakin.edu.au"
-                subject: "Status Update"
-                body: "Build was successful"
+                mail to: "s223083661@deakin.edu.au",
+                subject: "Status Update",
+                body: "Build was successful",
                 attachlog: true
             }
             failure{
-                mail to: "s223083661@deakin.edu.au"
-                subject: "Status Update"
-                body: "Build was usuccessful"
+                mail to: "s223083661@deakin.edu.au",
+                subject: "Status Update",
+                body: "Build was unsuccessful",
                 attachlog: true
             }
         }
