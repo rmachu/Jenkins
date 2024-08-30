@@ -57,7 +57,7 @@ pipeline{
      post{
             success{
                 emailext(
-                    to: "s223083661@deakin.edu.au",
+                    to: "rachel.chu37@gmail.com",
                     subject: "Status Update",
                     body: "Build was successful",
                     attachLog: true
